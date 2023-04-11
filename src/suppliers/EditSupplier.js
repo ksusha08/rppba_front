@@ -76,7 +76,7 @@ export default function EditSupplier() {
             <label htmFor="Address" className="form-label">Адрес</label>
             <input type={"text"}
               className="form-control"
-              placeholder="Введите адресс"
+              placeholder="Введите адрес"
               name="address" 
               value={address}
               onChange={(e)=>onInputChange(e)}
