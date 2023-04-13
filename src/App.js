@@ -22,6 +22,7 @@ import EditItem from './items/EditItem';
 import Documents from './pages/Document';
 import AddDocument from './documents/AddDocument';
 import EditDocument from './documents/EditDocument';
+import OpenDocument from './documents/OpenDocument';
 
 function App() {
   return (
@@ -31,12 +32,13 @@ function App() {
 
     <Navbar/>
     <Routes>
-    <Route exact path="/" element= {<Login/>}/>
+    <Route exact path="/" element= {<Login className="login-background"/>}/>
     <Route exact path="/main" element= {<Main/>}/>
 
     <Route exact path="/documents" element= {<Documents/>}/>
     <Route exact path="/adddocument" element= {<AddDocument/>}/>
     <Route exact path="/editdocument/:id" element ={<EditDocument/>}/>
+    <Route exact path="/opendocument/:id" element ={<OpenDocument/>}/>
 
     <Route exact path="/items" element= {<Items/>}/>
     <Route exact path="/additem" element= {<AddItem/>}/>

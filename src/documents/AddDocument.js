@@ -122,6 +122,7 @@ export default function AddDocument() {
           <Modal.Title>Выберите поставщика</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+        <div className="table-wrapper-scroll-y my-custom-scrollbar2">
           <Table striped bordered hover>
             <thead>
               <tr>
@@ -152,6 +153,7 @@ export default function AddDocument() {
               ))}
             </tbody>
           </Table>
+          </div>
         </Modal.Body>
       </Modal>
         </div>

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
-import Menu from "./Menu";
+import Menu from "../pages/Menu";
 
-export default function Items() {
+export default function OpenDocument() {
   const [items, setItems] = useState([]);
 
   const { id } = useParams();
@@ -24,13 +24,13 @@ export default function Items() {
 
   return (
     <div>
-      <Menu />
-      <Link
+    
+     <Link
         className="btn btn-dark ml-0 "
-        to={`/additem`}
+        to={`/documents`}
         style={{ float: "right" }}
       >
-        Добавить товар
+        Назад
       </Link>
 
       <div className="container">
@@ -69,6 +69,12 @@ export default function Items() {
                       onClick={() => deleteItem(item.id)}
                     >
                       Удалить
+                    </button>
+                    <button
+                      className="btn btn-dark ml-0"
+                      onClick={() => deleteItem(item.id)}
+                    >
+                      Выбрать
                     </button>
                   </td>
                 </tr>

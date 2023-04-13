@@ -24,56 +24,58 @@ export default function Suppliers() {
 
   return (
     <div>
-    <Menu />
-    <Link
-                    className="btn btn-dark ml-0 "
-                    to={`/addsupplier`}
-                    style={{ float: "right" }}
-                  >
-                    Добавить поставщика
-                  </Link>
+      <Menu />
+      <Link
+        className="btn btn-dark ml-0 "
+        to={`/addsupplier`}
+        style={{ float: "right" }}
+      >
+        Добавить поставщика
+      </Link>
 
-    <div className="container">
-      <div className="py-4 d-flex justify-content-end">
-        <table className="table border shadow">
-          <thead>
-            <tr>
-              <th scope="col">ИД</th>
-              <th scope="col">Имя</th>
-              <th scope="col">Почта</th>
-              <th scope="col">Адрес</th>
-              <th scope="col">Действие</th>
-            </tr>
-          </thead>
-          <tbody>
-            {suppliers.map((supplier, index) => (
-              <tr>
-                <th scope="row" key={index}>
-                  {index + 1}
-                </th>
-                <td>{supplier.name}</td>
-                <td>{supplier.email}</td>
-                <td>{supplier.address}</td>
-                <td>
-                  <Link
-                    className="btn btn-outline-dark mx-2"
-                    to={`/editsupplier/${supplier.id}`}
-                  >
-                    Редактировать
-                  </Link>
-                  <button
-                    className="btn btn-danger mx-2"
-                    onClick={() => deleteSupplier(supplier.id)}
-                  >
-                    Удалить
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="container">
+        <div className="table-wrapper-scroll-y my-custom-scrollbar">
+          <div className="py-4 d-flex justify-content-end">
+            <table className="table border shadow">
+              <thead>
+                <tr>
+                  <th scope="col">ИД</th>
+                  <th scope="col">Имя</th>
+                  <th scope="col">Почта</th>
+                  <th scope="col">Адрес</th>
+                  <th scope="col">Действие</th>
+                </tr>
+              </thead>
+              <tbody>
+                {suppliers.map((supplier, index) => (
+                  <tr>
+                    <th scope="row" key={index}>
+                      {index + 1}
+                    </th>
+                    <td>{supplier.name}</td>
+                    <td>{supplier.email}</td>
+                    <td>{supplier.address}</td>
+                    <td>
+                      <Link
+                        className="btn btn-outline-dark mx-2"
+                        to={`/editsupplier/${supplier.id}`}
+                      >
+                        Редактировать
+                      </Link>
+                      <button
+                        className="btn btn-danger mx-2"
+                        onClick={() => deleteSupplier(supplier.id)}
+                      >
+                        Удалить
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-    </div>
     </div>
   );
 }

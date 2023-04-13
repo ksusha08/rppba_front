@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  
 }
 
 .App-logo {
@@ -43,3 +44,51 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+.white-background {
+  background-color: white;
+
+  height: 40vh;
+ 
+ 
+}
+
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 94vh;
+
+  background-image: url('./img/app4.jpg');
+  background-size: cover;
+
+  background-blend-mode: multiply;
+  background-color: #bcbcbc;
+}
+
+.login-form-wrapper {
+  position: relative;
+  background-color: white;
+  max-width: 400px;
+  margin: 0 auto;
+
+  width: 400px; /* ширина формы */
+  height: 400px; /* высота формы */
+  
+}
+
+.login-form-button {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  right: 0;
+  transform: translateX(-50%);
+  margin-bottom: 20px; 
+  width: 70%;
+}
+
+

@@ -1,10 +1,14 @@
 import React, {useEffect,useState} from 'react';
 import axios from "axios";
 import {Link,useNavigate,useParams} from "react-router-dom";
+import { Modal, Table } from "react-bootstrap";
 
 export default function EditDocument() {
 
   let navigate=useNavigate();
+
+  const [suppliers, setSuppliers] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   const {id} = useParams()
 
@@ -41,6 +45,19 @@ export default function EditDocument() {
     setDocument(result.data);
   };
 
+  useEffect(() => {
+    const fetchSuppliers = async () => {
+      const { data } = await axios.get("http://localhost:8080/suppliers");
+      setSuppliers(data);
+    };
+    fetchSuppliers();
+  }, []);
+
+  const handleSelectSupplier = (selectedSupplier) => {
+    setDocument({ ...document, id_provider: selectedSupplier.id });
+    setShowModal(false);
+  };
+
   return (
     <div className="container">
       <div className="row" >
@@ -74,42 +91,77 @@ export default function EditDocument() {
               />
           </div>
 
-          <div className="mb-3">
-            <label htmFor="status" className="form-label">Статус</label>
-            <input type={"text"}
-              className="form-control"
-              placeholder="Введите статус"
-              name="status" 
-              value={status}
-              onChange={(e)=>onInputChange(e)}
-              />
-          </div>
 
           <div className="mb-3">
-            <label htmFor="type" className="form-label">Тип</label>
-            <input type={"text"}
-              className="form-control"
-              placeholder="Введите тип"
-              name="type" 
-              value={type}
-              onChange={(e)=>onInputChange(e)}
-              />
-          </div>
+              <label htmlFor="Type" className="form-label">Тип</label>
+              <select
+                className="form-control"
+                name="type"
+                value={type}
+                onChange={(e)=>onInputChange(e)}
+              >
+                <option value="">Выберите тип</option>
+                <option value="приход">Приход</option>
+                <option value="расход">Расход</option>
+              </select>
+            </div>
 
-          <div className="mb-3">
-            <label htmFor="id_provider" className="form-label">Поставщик</label>
-            <input type={"text"}
-              className="form-control"
-              placeholder="Введите поставщика"
-              name="id_provider" 
-              value={id_provider}
-              onChange={(e)=>onInputChange(e)}
-              />
-          </div>
+            <div className="mb-3">
+          <label htmlFor="id_provider" className="form-label">
+            Поставщик
+          </label>
+          <input
+            type={"text"}
+            className="form-control"
+            placeholder="Выберите поставщика"
+            name="id_provider"
+            value={id_provider}
+            onClick={() => setShowModal(true)}
+          />
+        </div>
 
           <button type="submit" className="btn btn-outline-dark">Редактировать</button>
           <Link  className="btn btn-outline-danger mx-2" to ="/documents">Отмена</Link>
           </form>
+          <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Выберите поставщика</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <div className="table-wrapper-scroll-y my-custom-scrollbar2">
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Имя</th>
+                <th>Почта</th>
+                <th>Адрес</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {suppliers.map((supplier) => (
+                <tr key={supplier.id}>
+                  <td>{supplier.id}</td>
+                  <td>{supplier.name}</td>
+                  <td>{supplier.email}</td>
+                  <td>{supplier.address}</td>
+                  <td>
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      onClick={() => handleSelectSupplier(supplier)}
+                    >
+                      Выбрать
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          </div>
+        </Modal.Body>
+      </Modal>
         </div>
       </div>
     </div>

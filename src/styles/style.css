@@ -1,5 +1,15 @@
-.login-button {
-    background-color: red;
-    color: white;
-    font-size: 16px;
+.my-custom-scrollbar {
+  position: relative;
+  height: 500px;
+  overflow: auto;
   }
+
+  .table-wrapper-scroll-y {
+  display: block;
+  }
+
+  .my-custom-scrollbar2 {
+    position: relative;
+    height: 300px;
+    overflow: auto;
+    }
