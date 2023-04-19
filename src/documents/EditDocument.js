@@ -35,19 +35,19 @@ export default function EditDocument() {
   const onSubmit= async (e)=>{
 
     e.preventDefault();
-    await axios.put(`http://localhost:8080/document/${id}`,document);
+    await axios.put(`http://localhost:8081/document/${id}`,document);
     navigate("/documents");
 
   };
 
   const loadDocument = async ()=>{
-    const result = await axios.get(`http://localhost:8080/document/${id}`);
+    const result = await axios.get(`http://localhost:8081/document/${id}`);
     setDocument(result.data);
   };
 
   useEffect(() => {
     const fetchSuppliers = async () => {
-      const { data } = await axios.get("http://localhost:8080/suppliers");
+      const { data } = await axios.get("http://localhost:8081/suppliers");
       setSuppliers(data);
     };
     fetchSuppliers();

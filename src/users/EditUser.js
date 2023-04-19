@@ -33,13 +33,13 @@ export default function EditUser() {
   const onSubmit= async (e)=>{
 
     e.preventDefault();
-    await axios.put(`http://localhost:8080/user/${id}`,user);
+    await axios.put(`http://localhost:8081/user/${id}`,user);
     navigate("/home");
 
   };
 
   const loadUser = async ()=>{
-    const result = await axios.get(`http://localhost:8080/user/${id}`);
+    const result = await axios.get(`http://localhost:8081/user/${id}`);
     setUser(result.data);
   };
 

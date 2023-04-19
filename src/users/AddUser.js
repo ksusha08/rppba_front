@@ -30,7 +30,7 @@ export default function AddUser() {
     } else {
       user.roles = ["USER"];
     }
-    await axios.post("http://localhost:8080/user", user);
+    await axios.post("http://localhost:8081/user", user);
     navigate("/home");
   };
 

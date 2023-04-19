@@ -14,12 +14,12 @@ export default function Documents() {
   }, []);
 
   const loadDocuments = async () => {
-    const result = await axios.get("http://localhost:8080/documents");
+    const result = await axios.get("http://localhost:8081/documents");
     setDocuments(result.data);
   };
 
   const deleteDocument = async (id) => {
-    await axios.delete(`http://localhost:8080/document/${id}`);
+    await axios.delete(`http://localhost:8081/document/${id}`);
     loadDocuments();
   };
 

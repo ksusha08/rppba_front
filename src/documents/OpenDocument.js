@@ -13,12 +13,12 @@ export default function OpenDocument() {
   }, []);
 
   const loadItems = async () => {
-    const result = await axios.get("http://localhost:8080/items");
+    const result = await axios.get("http://localhost:8081/items");
     setItems(result.data);
   };
 
   const deleteItem = async (id) => {
-    await axios.delete(`http://localhost:8080/item/${id}`);
+    await axios.delete(`http://localhost:8081/item/${id}`);
     loadItems();
   };
 

@@ -29,13 +29,13 @@ export default function EditSupplier() {
   const onSubmit= async (e)=>{
 
     e.preventDefault();
-    await axios.put(`http://localhost:8080/supplier/${id}`,supplier);
+    await axios.put(`http://localhost:8081/supplier/${id}`,supplier);
     navigate("/suppliers");
 
   };
 
   const loadSupplier = async ()=>{
-    const result = await axios.get(`http://localhost:8080/supplier/${id}`);
+    const result = await axios.get(`http://localhost:8081/supplier/${id}`);
     setSupplier(result.data);
   };
 

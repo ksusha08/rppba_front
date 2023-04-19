@@ -13,12 +13,12 @@ export default function Suppliers() {
   }, []);
 
   const loadSuppliers = async () => {
-    const result = await axios.get("http://localhost:8080/suppliers");
+    const result = await axios.get("http://localhost:8081/suppliers");
     setSuppliers(result.data);
   };
 
   const deleteSupplier = async (id) => {
-    await axios.delete(`http://localhost:8080/supplier/${id}`);
+    await axios.delete(`http://localhost:8081/supplier/${id}`);
     loadSuppliers();
   };
 

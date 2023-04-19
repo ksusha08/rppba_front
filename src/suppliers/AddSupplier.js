@@ -23,7 +23,7 @@ export default function AddSupplier() {
   const onSubmit= async (e)=>{
 
     e.preventDefault();
-    await axios.post("http://localhost:8080/supplier",supplier);
+    await axios.post("http://localhost:8081/supplier",supplier);
     navigate("/suppliers");
 
   };

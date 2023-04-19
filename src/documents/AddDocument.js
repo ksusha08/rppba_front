@@ -33,14 +33,14 @@ export default function AddDocument() {
   const onSubmit= async (e)=>{
 
     e.preventDefault();
-    await axios.post("http://localhost:8080/document",document);
+    await axios.post("http://localhost:8081/document",document);
     navigate("/documents");
 
   };
 
   useEffect(() => {
     const fetchSuppliers = async () => {
-      const { data } = await axios.get("http://localhost:8080/suppliers");
+      const { data } = await axios.get("http://localhost:8081/suppliers");
       setSuppliers(data);
     };
     fetchSuppliers();
