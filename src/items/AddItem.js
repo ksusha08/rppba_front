@@ -10,36 +10,35 @@ export default function AddItem() {
     vendoreCode: '',
     description: '',
     discountPrice: '',
-    photos: null,
+    number: '',
   });
 
-  const { name, vendoreCode, description, discountPrice, photos } = item;
+  const { name, vendoreCode, description, discountPrice,number } = item;
 
   const onInputChange = (e) => {
     setItem({ ...item, [e.target.name]: e.target.value });
   };
 
-  const onFileChange = (e) => {
-    setItem({ ...item, photos: e.target.files[0] });
-  };
 
+  //formData.append("photos", e.target.photos.files[0]);
   const onSubmit = async (e) => {
     e.preventDefault();
-
+  
     const formData = new FormData();
-    formData.append('photos', photos);
-    formData.append('name', name);
-    formData.append('vendoreCode', vendoreCode);
-    formData.append('description', description);
-    formData.append('discountPrice', discountPrice);
-
-    await axios.post('http://localhost:8081/item', formData, {
+    formData.append('photos',  e.target.photos.files[0]);
+    formData.append('item', new Blob([JSON.stringify(item)], {
+      type: 'application/json'
+    }));
+  
+    await axios.post("http://localhost:8081/item/", formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
     });
     navigate('/items');
   };
+
+
 
   return (
     <div className='container'>
@@ -63,7 +62,7 @@ export default function AddItem() {
             </div>
 
             <div className='mb-3'>
-              <label htmlFor='Email' className='form-label'>
+              <label htmlFor='VendoreCode' className='form-label'>
                 Артикул
               </label>
               <input
@@ -77,7 +76,7 @@ export default function AddItem() {
             </div>
 
             <div className='mb-3'>
-              <label htmlFor='Address' className='form-label'>
+              <label htmlFor='Description' className='form-label'>
                 Описание
               </label>
               <input
@@ -91,7 +90,7 @@ export default function AddItem() {
             </div>
 
             <div className='mb-3'>
-              <label htmlFor='Address' className='form-label'>
+              <label htmlFor='Price' className='form-label'>
                 Цена
               </label>
               <input
@@ -105,16 +104,32 @@ export default function AddItem() {
             </div>
 
             <div className='mb-3'>
-              <label htmlFor='photos' className='form-label'>
-                Фото
+              <label htmlFor='Number' className='form-label'>
+                Количество
               </label>
               <input
-                type='file'
+                type='text'
                 className='form-control'
-                name='photos'
-                onChange={(e) => onFileChange(e)}
+                placeholder='Введите количество'
+                name='number'
+                value={number}
+                onChange={(e) => onInputChange(e)}
               />
-            </div>       
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="photos" className="form-label">
+                Изображение товара
+              </label>
+              <input
+                type="file"
+                className="form-control"
+                id="photos"
+                name="photos"
+                accept=".jpg,.png,.jpeg"
+              />
+            </div>  
+
              <div className='d-flex justify-content-between align-items-center'>
               <Link to='/items' className='btn btn-danger'>
                 Назад

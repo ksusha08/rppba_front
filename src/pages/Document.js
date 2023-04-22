@@ -57,11 +57,12 @@ export default function Documents() {
                       {index + 1}
                     </th>
                     <td>{document.number}</td>
-                    <td>{new Date(document.date).getDate()}.{new Date(document.date).getMonth() + 1}.{new Date(document.date).getFullYear()}</td>
+                    <td>{new Date(document.date).toLocaleDateString('ru-RU', {day: '2-digit', month: '2-digit', year: 'numeric'})}</td>
+
                     <td>{document.status}</td>
                     <td>{document.type}</td>
-                    <td>{document.id_user}</td>
-                    <td>{document.id_provider}</td>
+                    <td>{document.user.name}</td>
+                    <td>{document.supplier.name}</td>
                     <td>
                       <Link
                         className="btn btn-outline-dark mx-2"

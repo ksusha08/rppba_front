@@ -19,7 +19,7 @@ export default function Menu() {
             </li>
             <li className="nav-item">
               <Link to="/documents" className="nav-link">
-                Документ
+                Документы
               </Link>
             </li>
           </ul>

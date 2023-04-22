@@ -2,14 +2,81 @@
   position: relative;
   height: 500px;
   overflow: auto;
-  }
+}
 
-  .table-wrapper-scroll-y {
+.table-wrapper-scroll-y {
   display: block;
-  }
+}
 
-  .my-custom-scrollbar2 {
-    position: relative;
-    height: 300px;
-    overflow: auto;
-    }
+.my-custom-scrollbar2 {
+  position: relative;
+  height: 300px;
+  overflow: auto;
+}
+
+.card-img-top {
+  max-width: 100%;
+  max-height: 200px;
+  /* Максимальная высота фотографии */
+  object-fit: contain;
+  /* Вписывание фотографии в контейнер */
+  margin-top: 10px;
+  /* Отступ между верхом карточки и началом изображения */
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: bold;
+  /* Размер заголовка */
+}
+
+.card-text {
+  font-size: 0.8rem;
+  /* Размер текста */
+}
+
+.card {
+
+  height: 400px;
+  /* Фиксированная высота карточки */
+  width: 400px;
+  /* Ширина карточки */
+  margin-bottom: 1px;
+  /* Отступ между карточками */
+}
+
+.card-footer {
+
+  text-align: center;
+  padding: 10px;
+}
+.items-list {
+  margin-top: 40px;
+}
+
+.pagination {
+  text-decoration-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination li {
+  text-decoration-color: black;
+  margin: 0 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border: 2px solid black;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.pagination li.active {
+  text-decoration-color: black;
+  background-color: black;
+  color: white;
+}

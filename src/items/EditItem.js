@@ -12,10 +12,11 @@ export default function EditItem() {
     name: "",
     vendoreCode: "",
     description: "",
-    discountPrice: ""
+    discountPrice: "",
+    number: ""
   });
 
-  const { name, vendoreCode, description, discountPrice } = item
+  const { name, vendoreCode, description, discountPrice,number } = item
 
   const onInputChange = async (e) => {
 
@@ -27,23 +28,22 @@ export default function EditItem() {
     loadItem()
   }, []);
 
+  
   const onSubmit = async (e) => {
     e.preventDefault();
-
+  
     const formData = new FormData();
-    formData.append("name", item.name);
-    formData.append("vendoreCode", item.vendoreCode);
-    formData.append("description", item.description);
-    formData.append("discountPrice", item.discountPrice);
-    formData.append("photos", e.target.photos.files[0]);
-
+    formData.append('photos',  e.target.photos.files[0]);
+    formData.append('item', new Blob([JSON.stringify(item)], {
+      type: 'application/json'
+    }));
+  
     await axios.put(`http://localhost:8081/item/${id}`, formData, {
       headers: {
-        "Content-Type": "multipart/form-data",
+        'Content-Type': 'multipart/form-data',
       },
     });
-
-    navigate("/items");
+    navigate('/items');
   };
 
   const loadItem = async () => {
@@ -102,6 +102,17 @@ export default function EditItem() {
                 placeholder="Введите цену"
                 name="discountPrice"
                 value={discountPrice}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmFor="number" className="form-label">Количество</label>
+              <input type={"text"}
+                className="form-control"
+                placeholder="Введите количество"
+                name="number"
+                value={number}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
