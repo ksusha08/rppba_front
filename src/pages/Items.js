@@ -58,7 +58,7 @@ export default function Items() {
                 </div>
                 <div className="card-footer">
                   <Link
-                    className="btn btn-outline-dark mr-2"
+                    className="btn btn-outline-dark mx-2"
                     to={`/edititem/${item.id}`}
                   >
                     <FontAwesomeIcon icon={faEdit} />

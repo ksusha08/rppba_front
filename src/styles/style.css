@@ -80,3 +80,9 @@
   background-color: black;
   color: white;
 }
+
+.custom-height {
+  height: 40px;
+  width: 95px;
+  margin-top: 24px;
+}

@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import Menu from "./Menu";
+import { faUserPen  } from "@fortawesome/free-solid-svg-icons";
+import { faUserMinus  } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Suppliers() {
   const [suppliers, setSuppliers] = useState([]);
@@ -60,13 +63,13 @@ export default function Suppliers() {
                         className="btn btn-outline-dark mx-2"
                         to={`/editsupplier/${supplier.id}`}
                       >
-                        Редактировать
+                        <FontAwesomeIcon icon={faUserPen} />
                       </Link>
                       <button
-                        className="btn btn-danger mx-2"
+                        className="btn btn-dark mx-2"
                         onClick={() => deleteSupplier(supplier.id)}
                       >
-                        Удалить
+                        <FontAwesomeIcon icon={faUserMinus} />
                       </button>
                     </td>
                   </tr>

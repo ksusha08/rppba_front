@@ -3,11 +3,16 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import Menu from "./Menu";
 import '../styles/style.css';
+import { faFilePen  } from "@fortawesome/free-solid-svg-icons";
+import { faFileCircleMinus} from "@fortawesome/free-solid-svg-icons";
+import { faFolderOpen } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Documents() {
   const [documents, setDocuments] = useState([]);
 
   const { id } = useParams();
+  
 
   useEffect(() => {
     loadDocuments();
@@ -65,23 +70,32 @@ export default function Documents() {
                     <td>{document.supplier.name}</td>
                     <td>
                       <Link
-                        className="btn btn-outline-dark mx-2"
+                        className="btn btn-outline-dark mx-0"
                         to={`/editdocument/${document.id}`}
                       >
-                        Редактировать
+                        <FontAwesomeIcon icon={faFilePen} />
                       </Link>
+
                       <button
-                        className="btn btn-danger mx-2"
+                        className="btn btn-outline-dark mx-2"
                         onClick={() => deleteDocument(document.id)}
                       >
-                        Удалить
+                        <FontAwesomeIcon icon={faFileCircleMinus} />
                       </button>
+
                       <Link
                         className="btn btn-dark mx-0"
                         to={`/opendocument/${document.id}`}
                       >
-                        Открыть
+                        <FontAwesomeIcon icon={faFolderOpen} />
                       </Link>
+
+                      <button
+                        className="btn btn-dark mx-2"
+                      >
+                        Изменить статус
+                      </button>
+
                     </td>
                   </tr>
                 ))}
