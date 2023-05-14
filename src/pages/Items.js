@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
-import Menu from "./Menu";
-import { faEdit  } from "@fortawesome/free-solid-svg-icons";
-import { faTrash  } from "@fortawesome/free-solid-svg-icons";
+import MainMenu from "../menu/MainMenu";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import '../styles/style.css';
 
@@ -27,20 +28,23 @@ export default function Items() {
   };
 
   return (
-    <div>
-      <Menu />
+
+    <div className="mainFon">
+      <MainMenu />
+      <h1 >Товары</h1>
+      
       <Link
         className="btn btn-dark ml-0 "
         to={`/additem`}
         style={{ float: "right" }}
       >
-        Добавить товар
+        <FontAwesomeIcon icon={faPlus} />
       </Link>
-
-      <div className="container items-list">
+      <div className="item-container">
+        
         <div className="row">
           {items.map((item, index) => (
-            <div className="col-md-4 mb-4" key={item.id}>
+            <div className="col-md-3 mb-3" key={item.id}>
               <div className="card h-100">
                 {item.photos && (
                   <img
@@ -50,10 +54,9 @@ export default function Items() {
                   />
                 )}
                 <div className="card-body">
-                  <h2 className="card-title">Наименование: {item.name}</h2>
-                  <p className="card-text">Артикул: {item.vendoreCode}</p>
+                  <h2 className="card-title">Название: {item.supplierNomenclature.nomenclature.name}</h2>
+                  <p className="card-text">Поставщик: {item.supplierNomenclature.supplier.name}</p>
                   <p className="card-text">Цена: {item.discountPrice} BYN</p>
-                  <p className="card-text">Количесвто: {item.number} </p>
                   <p className="card-text">Описание: {item.description}</p>
                 </div>
                 <div className="card-footer">

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ba8bb5d6-61d7-4fa2-bbc2-cf606a366a28" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/documents/AddDocument.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/documents/AddDocument.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/documents/OpenDocument.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/documents/OpenDocument.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/items/AddItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/items/AddItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/items/EditItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/items/EditItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/Navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Document.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Document.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Items.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Items.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Suppliers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Suppliers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/style.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2PhLaCV8xoTbfquxmKXIIlPwiAd" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ba8bb5d6-61d7-4fa2-bbc2-cf606a366a28" name="Default Changelist" comment="" />
+      <created>1683904427871</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1683904427871</updated>
+      <workItem from="1683904430614" duration="6000" />
+    </task>
+    <servers />
+  </component>
+</project>

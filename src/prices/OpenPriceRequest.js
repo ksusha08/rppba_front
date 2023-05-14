@@ -1,66 +1,53 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Modal, Button } from 'react-bootstrap';
 import Menu from "../pages/Menu";
 import '../styles/style.css';
 
 export default function OpenDocument() {
-  let navigate = useNavigate()
-
   const [items, setItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
 
-  const { id } = useParams();
+  const { id} = useParams();
+
   const [amount, setAmount] = useState('');
   const [documentInfo, setDocumentInfo] = useState([]);
 
-  const [selectedDocument, setSelectedDocument] = useState([]);
-
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  const closeModal = () => {
-    setModalIsOpen(false);
-  };
+  const [priceRequestInfo, setPriceRequestInfo] = useState([]);
 
   const handleAmountChange = (event) => {
     setAmount(event.target.value);
   };
 
   const loadItems = async () => {
-    const result = await axios.get(`http://localhost:8081/itemsBySupplier/${id}`);
+    
+    const result = await axios.get(`http://localhost:8081/supplierNomenclatureBySupplier/${id}`);
     setItems(result.data);
   };
 
-
-
   useEffect(() => {
-    loadItems();
     loadDocumentInfo();
-    loadDocument();
+    loadItems();
   }, []);
 
   const loadDocumentInfo = async () => {
-    const result = await axios.get(`http://localhost:8081/documentInfo/findByDocId/${id}`);
-    setDocumentInfo(result.data);
+    const result = await axios.get(`http://localhost:8081/priceRequestInfo/findByPriceRequestId/${id}`);
+    setPriceRequestInfo(result.data);
   };
 
-  const loadDocument = async () => {
-    const result = await axios.get(`http://localhost:8081/document/${id}`);
-    setSelectedDocument(result.data);
-  };
-
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const newDocumentInfo = {
-      amount,
-      price: amount * selectedItem.discountPrice,
+      amount
     };
+
     const result = await axios.post(
-      `http://localhost:8081/documentInfo/${id}/${selectedItem.id}/`,
+      `http://localhost:8081/priceRequestInfo/${id}/${selectedItem.id}/`,
       newDocumentInfo
     );
     setSelectedItem(null);
@@ -70,21 +57,9 @@ export default function OpenDocument() {
     loadDocumentInfo();
   };
 
-  const handleSubmit2 = async (e) => {
-    e.preventDefault();
-    
-    const result = await axios.put(
-      `http://localhost:8081/sendToSupplier/${id}/`
-    );
-    setModalIsOpen(true);
-    navigate("/documents");
-    
-  };
-
-
 
   const deleteInfo = async (id) => {
-    await axios.delete(`http://localhost:8081/documentInfo/${id}`);
+    await axios.delete(`http://localhost:8081/priceRequestInfo/${id}`);
     loadDocumentInfo();
   };
 
@@ -92,7 +67,7 @@ export default function OpenDocument() {
     <div className="mainFon">
       <Link
         className="btn btn-dark ml-0 "
-        to={`/documents`}
+        to={`/pricerequest`}
         style={{ float: "right" }}
       >
         Назад
@@ -105,34 +80,24 @@ export default function OpenDocument() {
         <div className="col-md-6">
 
           <div className="container">
-            <h3>Товары</h3>
+            <h3>Номенклатуры поставщика</h3>
 
             <div className="container">
 
 
               <div className="d-flex justify-content-between mb-3" >
                 <div className='mb-3'>
-                  <label htmlFor="vendoreCode">Артикул товара:</label>
+                  <label htmlFor="vendoreCode">Название:</label>
                   <input
                     type="text"
                     id="vendoreCode"
                     name="vendoreCode"
                     className="form-control"
-                    value={selectedItem ? selectedItem.supplierNomenclature.nomenclature.name : ""}
+                    value={selectedItem ? selectedItem.nomenclature.name : ""}
                     readOnly
                   />
                 </div>
-                <div className='mb-3'>
-                  <label htmlFor="discountPrice">Цена за единицу:</label>
-                  <input
-                    type="text"
-                    id="discountPrice"
-                    name="discountPrice"
-                    className="form-control"
-                    value={selectedItem ? selectedItem.discountPrice : ""}
-                    readOnly
-                  />
-                </div>
+               
                 <div className='mb-3'>
                   <label htmlFor="number">Количество:</label>
                   <input
@@ -162,10 +127,6 @@ export default function OpenDocument() {
                     <tr>
                       <th scope="col">ИД</th>
                       <th scope="col">Название</th>
-
-                      <th scope="col">Цена</th>
-                      <th scope="col">Описание</th>
-                      <th scope="col">Изображение</th>
                       <th scope="col">Действие</th>
                     </tr>
                   </thead>
@@ -173,21 +134,8 @@ export default function OpenDocument() {
                     {items.map((item, index) => (
                       <tr key={item.id}>
                         <th scope="row">{item.id}</th>
-                        <td>{item.supplierNomenclature.nomenclature.name}</td>
-
-                        <td>{item.discountPrice}</td>
-
-                        <td>{item.description}</td>
-
-                        <td>
-                          {item.photos && (
-                            <img
-                              src={`http://localhost:8081${item.photosImagePath}`}
-                              alt={item.name}
-                              height="50"
-                            />
-                          )}
-                        </td>
+                        <td>{item.nomenclature.name}</td>
+                    
                         <td>
                           <button
                             className="btn btn-dark ml-0"
@@ -211,28 +159,25 @@ export default function OpenDocument() {
 
         <div className="col-md-6">
           <div className="container">
-            <h3>Содержимое заказа</h3>
+            <h3>Содержимое заявки</h3>
             <div className="table-wrapper-scroll-y my-custom-scrollbar">
               <div className="py-4 d-flex justify-content-end">
                 <table className="table border shadow">
                   <thead>
                     <tr>
-                      <th scope="col">Товар</th>
-                      <th scope="col">Цена</th>
+                      <th scope="col">Название</th>
                       <th scope="col">Количество</th>
-                      <th scope="col">Сумма</th>
                       <th scope="col">Действие</th>
                     </tr>
                   </thead>
                   <tbody>
 
-                    {documentInfo.map((info, index) => (
+                    {priceRequestInfo.map((info, index) => (
                       <tr key={index}>
 
-                        <td>{info.item.supplierNomenclature.nomenclature.name}</td>
-                        <td>{info.item.discountPrice}</td>
+                        <td>{info.supplierNomenclature.nomenclature.name}</td>
                         <td>{info.amount}</td>
-                        <td>{info.price}</td>
+                       
 
                         <td>
                           <button
@@ -248,35 +193,14 @@ export default function OpenDocument() {
 
                   </tbody>
                 </table>
-               
               </div>
-              {selectedDocument.status == "создан" && (
-              <button type='submit' className='btn btn-dark  custom-height' onClick={handleSubmit2} style={{ width: "150px" }}>
-                  Отправить заказ
-                </button>
-              )}
             </div>
-
           </div>
-
         </div>
 
 
 
-
       </div>
-
-      <Modal show={modalIsOpen} onHide={closeModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Успешная отправка заказа!</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Вы успешно отправили документ с информацией о заказе поставщику на почту, пожалуйста ожидайте получение товара!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={closeModal}>
-            Закрыть
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
 }

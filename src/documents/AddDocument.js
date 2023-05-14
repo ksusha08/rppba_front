@@ -11,9 +11,9 @@ export default function AddDocument() {
   const [selectedProviderId, setSelectedProviderId] = useState(null);
 
   const [document, setDocument] = useState({
-    number: "",
+    
     date: "",
-    status: "не проведен",
+    status: "создан",
     type: "",
   });
 
@@ -50,25 +50,14 @@ export default function AddDocument() {
   };
 
   return (
-    <div className="container">
+    <div className="container mainFon">
       <div className="row">
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
           <h2 className="text-center m-4">Добавить документ</h2>
 
           <form onSubmit={(e) => onSubmit(e)}>
-            <div className="mb-3">
-              <label htmFor="Number" className="form-label">
-                Номер
-              </label>
-              <input
-                type={"text"}
-                className="form-control"
-                placeholder="Введите номер"
-                name="number"
-                value={number}
-                onChange={(e) => onInputChange(e)}
-              />
-            </div>
+
+           
 
             <div className="mb-3">
               <label htmFor="Date" className="form-label">
@@ -82,22 +71,6 @@ export default function AddDocument() {
                 value={date}
                 onChange={(e) => onInputChange(e)}
               />
-            </div>
-
-            <div className="mb-3">
-              <label htmlFor="Type" className="form-label">
-                Тип
-              </label>
-              <select
-                className="form-control"
-                name="type"
-                value={type}
-                onChange={(e) => onInputChange(e)}
-              >
-                <option value="">Выберите тип</option>
-                <option value="приход">Приход</option>
-                <option value="расход">Расход</option>
-              </select>
             </div>
 
             <div className="mb-3">

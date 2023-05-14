@@ -13,7 +13,7 @@ export default function AddUser() {
     email: "",
     username: "",
     password:"",
-    role: "USER" 
+    role: ["USER"] 
   });
 
   const { name, surname,patronymic,email,username, password, role } = user;
@@ -25,17 +25,13 @@ export default function AddUser() {
   const onSubmit = async (e) => {
     e.preventDefault();
    
-    if (user.role === "MANAGER") {
-      user.roles = ["MANAGER"];
-    } else {
-      user.roles = ["USER"];
-    }
+    user.roles = ["USER"];
     await axios.post("http://localhost:8081/user", user);
     navigate("/home");
   };
 
   return (
-    <div className="container">
+    <div className="container mainFon">
       <div className="row" >
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
 
@@ -114,13 +110,7 @@ export default function AddUser() {
             </div>
 
     
-            <div className="mb-3">
-              <label htmlFor="Role" className="form-label">Роль</label>
-              <select className="form-control" name="role" value={role} onChange={(e) => onInputChange(e)}>
-                <option value="USER">Пользователь</option>
-                <option value="MANAGER">Менеджер</option>
-              </select>
-            </div>
+          
 
             <button type="submit" className="btn btn-outline-dark">Зарегистрировать</button>
             <Link className="btn btn-outline-danger mx-2" to="/home">Отмена</Link>

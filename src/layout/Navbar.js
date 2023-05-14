@@ -8,7 +8,7 @@ export default function Navbar() {
 <nav className="navbar navbar-expand-lg bg-body-tertiary navbar-dark bg-dark">
   <div className="container-fluid">
     <a className="navbar-brand" href="#">
-        TOBAPHO-СКЛАДСКОЙ УЧЕТ
+        ОТДЕЛ ЗАКУПОК
     </a>
     <button 
     className="navbar-toggler" 

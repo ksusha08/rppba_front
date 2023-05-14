@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect,useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import '../styles/style.css';
 
 export default function ViewUser() {
   const [user, setUser] = useState({
@@ -25,12 +26,12 @@ export default function ViewUser() {
   };
 
   return (
-    <div className="container">
+    <div className="container mainFon">
       <div className="row">
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
           <h2 className="text-center m-4">Информация о пользователе</h2>
 
-          <div className="card">
+          <div className="card card-height">
             <div className="card-header">
               ИД : {user.id}
               <ul className="list-group list-group-flush">
@@ -60,15 +61,6 @@ export default function ViewUser() {
                   {user.username}
                 </li>
                 
-                <li className="list-group-item">
-                  <b>Пароль:</b>
-                  {user.password}
-                </li>
-
-                <li className="list-group-item">
-                  <b>Роль:</b>
-                  {user.roles}
-                </li>
               </ul>
             </div>
           </div>

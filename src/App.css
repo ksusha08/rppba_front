@@ -46,14 +46,23 @@
 }
 
 
+.main-background {
+  background-color: white;
+
+  height: 90vh;
+ 
+  background-image: url('./img/main1.jpg');
+  background-size:contain;
+ 
+}
 
 .white-background {
   background-color: white;
 
-  height: 40vh;
- 
- 
+  height: 90vh; 
 }
+
+
 
 
 .login-form {
@@ -63,7 +72,7 @@
   align-items: center;
   height: 94vh;
 
-  background-image: url('./img/app4.jpg');
+  background-image: url('./img/1.jpg');
   background-size: cover;
 
   background-blend-mode: multiply;
@@ -91,4 +100,8 @@
   width: 70%;
 }
 
+.mainFon{
+  max-height:870px;
+  height: 870px;
+}
 

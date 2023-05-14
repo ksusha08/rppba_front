@@ -12,16 +12,46 @@ export default function Menu() {
                 Справочник поставщиков
               </Link>
             </li>
+
+            <li className="nav-item">
+              <Link to="/nomenclature" className="nav-link">
+                Номенклатура
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link to="/suppliernomenclature" className="nav-link">
+                Номенклатуры поставщиков
+              </Link>
+            </li>
+
+
             <li className="nav-item">
               <Link to="/items" className="nav-link">
                 Справочник товаров
               </Link>
             </li>
+
+
             <li className="nav-item">
               <Link to="/documents" className="nav-link">
-                Документы
+                Оформление заказа
               </Link>
             </li>
+
+            <li className="nav-item">
+              <Link to="/pricerequest" className="nav-link">
+                Запрос цен
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link to="/needDoc" className="nav-link">
+                Потребности
+              </Link>
+            </li>
+
+
           </ul>
         </div>
       </div>

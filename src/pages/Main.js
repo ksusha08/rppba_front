@@ -1,15 +1,19 @@
 import React from "react";
-import Menu from "./Menu"; 
+import '../styles/menu.css';
+import MainMenu from "../menu/MainMenu";
 
 export default function Main() {
   return (
     <div>
-      <Menu /> 
-      <div className="container">
-        <div className="py-4">
-          <h1>Добро пожаловать на главную страницу</h1>
+      <MainMenu />
+      <form className="main-background d-flex justify-content-center align-items-center" >
+        <div className=" container">
+          <div className="py-4">
+            <h1></h1>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
+
   );
 }

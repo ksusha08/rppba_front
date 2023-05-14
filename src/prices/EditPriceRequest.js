@@ -1,53 +1,46 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate,useParams } from "react-router-dom";
 import { Modal, Table } from "react-bootstrap";
 
-export default function EditDocument() {
-
+export default function EditPriceRequest() {
   let navigate = useNavigate();
-
+  const [documents, setDocuments] = useState([]);
   const [suppliers, setSuppliers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedProviderId, setSelectedProviderId] = useState(null);
 
-
   const { id } = useParams()
 
   const [document, setDocument] = useState({
+  
     date: "",
-    supplier: {id}
+    status: "отправлен",
+  
   });
 
-  const { date,supplier } = document
+  const { number, date, status, type } = document;
 
   const onInputChange = async (e) => {
-
     setDocument({ ...document, [e.target.name]: e.target.value });
-
   };
-
-  useEffect(() => {
-    loadDocument()
-  }, []);
-
 
   const onSubmit = async (e) => {
-
     e.preventDefault();
-    let supplierId = selectedProviderId;
-
     if (!selectedProviderId) {
-      supplierId = document.supplier.id;
+      alert("Выберите поставщика");
+      return;
     }
-    await axios.put(`http://localhost:8081/document/${id}/${supplierId}`, document);
-    navigate("/documents");
-
+    
+    const userId = JSON.parse(localStorage.getItem("user")).id;
+    const supplierId = selectedProviderId;
+    await axios.put(`http://localhost:8081/priceRequest/${id}/${supplierId}`, document);
+    navigate("/pricerequest");
   };
 
-  const loadDocument = async () => {
-    const result = await axios.get(`http://localhost:8081/document/${id}`);
-    setDocument(result.data);
+  const loadDocuments = async () => {
+    const result = await axios.get("http://localhost:8081/priceRequest");
+    setDocuments(result.data);
   };
 
   useEffect(() => {
@@ -65,29 +58,27 @@ export default function EditDocument() {
 
   return (
     <div className="container mainFon">
-      <div className="row" >
+      <div className="row">
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-
-          <h2 className="text-center m-4">Редактировать документ</h2>
-
+          <h2 className="text-center m-4">Добавить документ</h2>
 
           <form onSubmit={(e) => onSubmit(e)}>
-
-           
+            
 
             <div className="mb-3">
-              <label htmFor="date" className="form-label">Дата</label>
-              <input type={"date"}
+              <label htmFor="Date" className="form-label">
+                Дата поставки
+              </label>
+              <input
+                type={"date"}
                 className="form-control"
-                placeholder="Введите дату"
+                placeholder="Выберите дату артикул"
                 name="date"
                 value={date}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
 
-
-            
 
             <div className="mb-3">
               <label htmlFor="id_provider" className="form-label">
@@ -97,7 +88,7 @@ export default function EditDocument() {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Выберите поставщика"
+                  placeholder="Выберите номенклатуру поставщика"
                   value={
                     selectedProviderId
                       ? suppliers.find((s) => s.id === selectedProviderId)
@@ -117,14 +108,12 @@ export default function EditDocument() {
             </div>
             <div className="mb-3">
               <button type="submit" className="btn btn-primary me-2">
-                Редактировать
+                Сохранить
               </button>
-              <Link to="/documents" className="btn btn-secondary">
+              <Link to="/pricerequest" className="btn btn-secondary">
                 Отмена
               </Link>
             </div>
-
-
           </form>
 
           <Modal show={showModal} onHide={() => setShowModal(false)}>
@@ -160,5 +149,6 @@ export default function EditDocument() {
         </div>
       </div>
     </div>
+
   );
 }
